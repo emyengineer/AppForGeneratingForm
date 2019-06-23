@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        (function () {
+
+            var formJsonObj;
+
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                type: "GET",
+                url: "/api/values",
+                dataType: 'json',
+
+                success: function (data, textStatus, jqXHR) {
+                    console.log(data);
+                    console.log('Header', data.Form.Header);
+                    console.log('Body', data.Form.Sections);
+                    CreateHeader(data.Form.Header);
+                    CreateBody(data.Form.Sections[0]);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+
+            function CreateHeader(header) {
+
+                $('<p>').text(header.Title).appendTo($('body'));
+                $('<p>').text(header.Logo).appendTo($('body'));
+
+                if (header.Description !== null && header.Description.length > 0)
+                {
+                   var description = $('<ul>').appendTo($('body'));
+                    $.each(header.Description, function (index, value) {
+                        $('<li>').text(value.Line).appendTo(description);
+                    });               
+                }
+                $('<label>').attr({ for: 'TextBox_id' }).text("Labelss").appendTo($('body'));
+            }
+
+            function CreateBody(body) {
+                var tables = body.Tables;
+                if (tables !== null && tables.length > 0) 
+                {
+                    $.each(tables, function (index, table) {
+                        $('<p>').text(table.Title).appendTo('body');
+                        $.each(table.Rows, function (index, row) {
+                            $('<input>').attr({ type: 'text', id: row.Id }).text(row.Name).appendTo($('body'));;
+                        });
+                    });
+                }
+            }
+
+
+        })();
+    </script>
+</body>
+</html>

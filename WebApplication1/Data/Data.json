@@ -1,0 +1,274 @@
+{
+	"Form" : {
+		"Header": {
+			"Title": "Standart Blanket ",
+				"Logo": "/images/logo.png",
+					"Image": "",
+						"Description" : [
+							{
+								"Line": "Standard blanket over esignaturs felter",
+								"Style": "<h1>"
+							},
+							{
+								"Line": "Flette felter og ikke flette felter ",
+								"Style": "<h2>"
+							},
+							{
+								"Line": "Disse er de felter der kan flettes ind fra på pdf’en og felter der ikke kan flettes ind.",
+								"Style": "<h3>"
+							}
+						],
+							"SectionType": "Header",
+								"FieldGroups": [{}]
+		},
+"Sections" : [{
+	"SectionType": "Body",
+		"Tables": [
+			 {
+				"Title": "Eksempel på personoplysninger:",
+				"Rows": [
+					 	 {
+						"FieldItem1": {
+							"Id": "1",
+							"Name": "Navn",
+							"Type": "Text",
+							"Options": [],
+							"Value": "",
+							"DependentId": " "
+							}
+						},
+					 {
+							"FieldItem2": {
+								"Id": "2",
+								"Name": "E-mail",
+								"Type": "Email",
+								"Options": [],
+								"Value": "",
+								"DependentId": ""
+						},
+							"FieldItem3": {
+								"Id": "3",
+								"Name": "CPR nr",
+								"Type": "Number",
+								"Options": [],
+								"Value": "",
+								"DependentId": ""
+							}
+						}
+				]
+		},
+			 {
+					"Title": "Eksempel på forskellige formfelter:",
+					"Rows": [
+						{
+								"FieldItem4":{
+									"Id": "4",
+									"Name": "BankAccount:",
+									"Type": "Text",
+									"Options": [],
+									"Value": "",
+									"DependentId": ""
+							}
+						},
+						{
+								"FieldItem5":{
+									"Id": "5",
+									"Name": "BankAccountRegistrationNumber:",
+									"Type": "Text",
+									"Options": [],
+									"Value": "",
+									"DependentId": ""
+									}
+								},
+						 {
+								"FieldItem6":{
+									"Id": "6",
+									"Name": "CPR",
+									"Type": "Text",
+									"Options": [],
+									"Value": "",
+									"DependentId": ""
+									},
+								"FieldItem7":{
+										"Id": "7",
+										"Name": "CVR",
+										"Type": "Text",
+										"Options": [],
+										"Value": "",
+										"DependentId": ""
+									}
+						},
+						 {
+								"FieldItem8":{
+										"Id": "8",
+										"Name": "Checkbox:",
+										"Type": "Checkbox",
+										"Options": ["Ja:", "Nej:"],
+										"Value": "",
+										"DependentId": ""
+								}
+						},
+						 {
+								"FieldItem9":{
+										"Id": "9",
+										"Name": "CustomRegularExpression (ord mellemrum ord):",
+										"Type": "Text",
+										"Options": [],
+										"Value": "",
+										"DependentId": ""
+								}
+						},
+						 {
+								"FieldItem10":{
+										"Id": "10",
+										"Name": "DateField:",
+										"Type": "Date",
+										"Options": [],
+										"Value": "",
+										"DependentId": ""
+								}
+						},
+						 {
+								"FieldItem11":{
+										"Id": "11",
+										"Name": "DropdownList:",
+										"Type": "Select",
+										"Options": [],
+										"Value": "",
+										"DependentId": ""
+								}
+						},
+						{
+								"FieldItem12":{
+										"Id": "12",
+										"Name": "EmailAddress:",
+										"Type": "Email",
+										"Options": [],
+										"Value": "",
+										"DependentId": ""
+								}
+						},
+						{
+								"FieldItem13":{
+										"Id": "13",
+										"Name": "NumericField:",
+										"Type": "Number",
+										"Options": [],
+										"Value": "",
+										"DependentId": ""
+								}
+						},
+						{
+								"FieldItem14":{
+										"Id": "14",
+										"Name": "PhoneNumber:",
+										"Type": "PhoneNumber",
+										"Options": [],
+										"Value": "",
+										"DependentId": ""
+								}
+						},
+						{
+								"FieldItem15":{
+										"Id": "15",
+										"Name": "RadioButtonGroup:",
+										"Type": "Radio",
+										"Options": ["valg nummer 1:", "valg nummer 2:"],
+										"Value": "",
+										"DependentId": ""
+											}
+						},
+						{
+								"FieldItem16":{
+										"Id": "16",
+										"Name": "RadioButtonGroupMulti:",
+										"Type": "RadioMulti",
+										"Options": [{"Type": "Text", "Label": "valg nummer 1:"}, {"Type": "Text", "Label": "valg nummer 2:"}],
+										"Value": "",
+										"DependentId": ""
+											}
+						},
+						{
+								"FieldItem17":{
+										"Id": "17",
+										"Name": "TextField:",
+										"Type": "",
+										"Options": [],
+										"Value": "",
+										"DependentId": ""
+											}
+							},
+						{
+								"FieldItem18":{
+										"Id": "18",
+										"Name": "TextFieldArea:",
+										"Type": "",
+										"Options": [],
+										"Value": "",
+										"DependentId": ""
+											}
+						},
+						{
+								"FieldItem19":{
+										"Id": "19",
+										"Name": "ZipCode:",
+										"Type": "Text",
+										"Options": [],
+										"Value": "",
+										"DependentId": ""
+									},
+								"FieldItem20":{
+										"Id": "20",
+										"Name": "NumericRange",
+										"Type": "Number",
+										"Options": [],
+										"Value": "",
+										"DependentId": ""
+									}
+							}
+					]
+		},
+			 {
+				"Title": "Ikke fletbare felter:",
+				"Rows": [
+						{
+							"FieldItem21": {
+											"Id": "21",
+											"Name": "DriversLicence (ikke fletbart):",
+											"Type": "Text",
+											"Options": [],
+											"Value": "",
+											"DependentId": ""
+									},
+							"FieldItem22": {
+										"Id": "22",
+										"Name": "FileUpload (ikke fletbart):",
+										"Type": "Text",
+										"Options": [],
+										"Value": "",
+										"DependentId": ""
+									}
+								},
+						{
+							"FieldItem23": {
+								"Id": "23",
+								"Name": "Label (ikke fletbart):",
+								"Type": "Text",
+								"Options": [],
+								"Value": "",
+								"DependentId": ""
+									},
+							"FieldItem24": {
+								"Id": "24",
+								"Name": "FileUpload (ikke fletbart):",
+								"Type": "Text",
+								"Options": [],
+								"Value": "",
+								"DependentId": "Passport (ikke fletbart):"
+							}
+					}]						
+				}
+			]
+		}]
+	}
+}
