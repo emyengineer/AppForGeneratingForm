@@ -72,22 +72,51 @@
                         $.each(table.Rows, function (index, row) {
 
                             var tableRow = $('<tr>').attr({ class: "table-row" }).appendTo($('body'));
-                            tableRow.appendTo(tableContent);
-                            
+                            tableRow.appendTo(tableContent);                        
 
                             if (row !== null && row.length >= 1) {
 
                                 $.each(row, function (i, cell) {
                                     
                                     var cellParentDiv = $('<div>').attr({ id: "cell-parent-div", class: "cell-element-div" }).appendTo(tableRow);
-                                     var label =   $('<label>').attr({ for: 'TextBox_' + (row[i].Id) }).text(row[i].Name).appendTo(cellParentDiv);
+                                    
+                                    if (row[i].Type === "Text") {
 
-                                    var input =  $('<input>').attr({ type: 'text', id: row[i].Id, class: "table-cell" }).appendTo(cellParentDiv);
+                                        var label = $('<label>').attr({ for: 'Text_' + (row[i].Id) }).text(row[i].Name).appendTo(cellParentDiv);
+                                        $('<input>').attr({ type: row[i].Type, id: 'Text_' + (row[i].Id), class: "table-cell" }).appendTo(cellParentDiv);
 
+                                    } else if (row[i].Type === "Checkbox") {
+                                        var label = $('<label>').attr({ for: 'checkBox_' + (row[i].Id) }).text(row[i].Name).appendTo(cellParentDiv);
+                                        // $('<input>').attr({ type: 'checkbox', id: row[i].Id, class: "table-cell" }).appendTo(cellParentDiv);
+                                    } else if (row[i].Type === "Select") {
 
-                                    if (cell !== null && cell !== undefined && cell.length > 0) {
-                                        $('<input>').attr({ type: 'text', id: cell.Id }).text(cell[i].Name).appendTo(cellParentDiv);
+                                       var label = $('<label>').attr({ for: 'Select_' + (row[i].Id) }).text(row[i].Name).appendTo(cellParentDiv);
+                                       var combo = $('<select>').attr({ type: row[i].Type, class: "table-cell" }).appendTo(cellParentDiv);
+                                        $.each(row[i].Options, function (j, selectOption) {
+                                            combo.append("<option>" + selectOption + "</option>");
+                                        })
+                                    } else {
+
+                                        var label = $('<label>').attr({ for: 'Text_' + (row[i].Id) }).text(row[i].Name).appendTo(cellParentDiv);
+                                        $('<input>').attr({ type: row[i].Type, id: 'Text_' + (row[i].Id), class: "table-cell" }).appendTo(cellParentDiv);
                                     }
+
+                                    if (row[i].Type === "Checkbox") {
+                                        var checkBoxesDiv = $('<div>').attr({ id: "checkboxes-div", class: "checkboxes-container-div" }).appendTo(cellParentDiv);
+
+                                         $.each(cell.Options, function (optIndex, option) {
+                                            
+                                             var optionLabel = $('<label>').attr({ for: 'checkbox_' + (row[i].Id) + "_" + optIndex, class: "checkBox-cell" }).text(option).appendTo(checkBoxesDiv);
+                                             var optionElement = $('<input>').attr({ type: 'checkbox', id: cell.Id, name: option, class: "checkBox-cell" }).appendTo(checkBoxesDiv);
+                                             
+                                         })
+                                        
+                                     } else {
+
+                                         if (cell !== null && cell !== undefined && cell.length > 0) {
+                                             $('<input>').attr({ type: 'text', id: cell.Id }).text(cell[i].Name).appendTo(cellParentDiv);
+                                         }
+                                     }
                                 });
                             }
                         });
