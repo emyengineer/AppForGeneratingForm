@@ -13,7 +13,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 280px;*/
 }
 
 .header-title-Banner {
@@ -40,18 +40,43 @@ ul{
     list-style: none;
 }
 
-.table-content {
+.table-container-div    {
+    border: black;
+    border-style: solid;
+    margin-bottom: 15px;
+    overflow:auto;
+    width: 100%;
+}
 
+
+.table-content {
+    width: 100%;
+    overflow:auto;
 }
 
 .table-head {
+    width: 300px;
 
 }
 
 .table-row {
-
+    display: flex;  
+    height: 30px;
+    width: 100%;
+    overflow:auto;
 }
 
 .table-cell {
+    display: inline-block;
+    background-color: aliceblue;
+    border: black;
+    border-width: thin;
+    border-style: solid;
+    width: 100%;
+    overflow:auto;
+}
 
+.hidden-Cell {
+    visibility: hidden;
+    width: 300px;
 }

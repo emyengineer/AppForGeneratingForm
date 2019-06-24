@@ -19,9 +19,9 @@
                 dataType: 'json',
 
                 success: function (data, textStatus, jqXHR) {
-                    console.log(data);
-                    console.log('Header', data.Form.Header);
-                    console.log('Body', data.Form.Sections);
+                    //console.log(data);
+                    //console.log('Header', data.Form.Header);
+                    //console.log('Body', data.Form.Sections);
                     CreateHeader(data.Form.Header);
                     CreateBody(data.Form.Sections[0]);
                 },
@@ -51,7 +51,7 @@
                         $('<li>').attr({class : "h1"}).text(value.Line).appendTo(description);
                     });               
                 }
-                $('<label>').attr({ for: 'TextBox_id' }).text("Labelss").appendTo($('body'));
+                //$('<label>').attr({ for: 'TextBox_id' }).text("Labelss").appendTo($('body'));
             }
 
             function CreateBody(body) {
@@ -60,27 +60,39 @@
                 {
                     $.each(tables, function (index, table) {
                         // console.log(table);
-                        var tableContent = $('<table>').attr({ class: "table-content" }).appendTo($('body'));
+                        var tableContainerDiv = $('<div>').attr({ id: "table-container-div-"+ index, class: "table-container-div" }).appendTo($('body'));
 
+                        var tableContent = $('<table>').attr({ class: "table-content" }).appendTo(tableContainerDiv);
+                        /*
                         var tableHead = $('<tr>').attr({ class: "table-head" }).appendTo(tableContent);
                         $('<th>').attr({ class: "table-head" }).text('Table Header').appendTo(tableHead);
                         $('<th>').attr({ class: "table-head" }).text('Table Header').appendTo(tableHead);
                         $('<th>').attr({ class: "table-head" }).text('Table Header').appendTo(tableHead);
-
-                        $('<p>').text(table.Title).appendTo(tableContent);
+                        */
+                       // $('<p>').text(table.Title).appendTo(tableContent);
 
                         $.each(table.Rows, function (index, row) {
                             var tableRow = $('<tr>').attr({ class: "table-row" }).appendTo($('body'));
                             tableRow.appendTo(tableContent);
-                            console.log(row);
+                            //console.log(row);
                             
 
                             if (row !== null && row.length >= 1) {
+                                var parentCell;
 
-                            $.each(row, function (i, cell) {
-                                var parentCell = $('<input>').attr({ type: 'text', id: row.Id, value: row[i].Name }).text(row[i].Name).appendTo(tableRow);
+                                if (index === 0) {
+
+                                    parentCell = $('<label>').attr({ type: 'text', class: "table-head" }).text(table.Title).appendTo(tableRow);
+                                }
+
+                                $.each(row, function (i, cell) {                                  
+                                    if (index > 0 && i === 0) {
+                                        parentCell = $('<label>').attr({ class : "hidden-Cell" }).text("...........................").appendTo(tableRow);
+                                    }
+                                    $('<input>').attr({ type: 'text', id: row[i].Id, value: row[i].Name, class: "table-cell" }).text(row[i].Name).appendTo(tableRow);
+
                                     if (cell !== null && cell !== undefined && cell.length > 0) {
-                                        $('<input>').attr({ type: 'text', id: cell.Id, value: cell[i].Name }).text(cell[i].Name).appendTo(parentCell);
+                                        $('<input>').attr({ type: 'text', id: cell.Id, value: cell[i].Name }).text(cell[i].Name).appendTo(tableRow);
                                     }
                                 });
                             }
