@@ -19,33 +19,63 @@ textarea {
 .header-title-Banner {
     display: flex;
     background-color: #315D78;
+    width:  100%;
 }
 
 .img-Banner {
     background-color: white;
+    width: 20%;
 }
 
 .header-title {
-    width: 200px;
+    width: 50%;
     color: white;
     height: 10px;
+    font-size: 50px;
+    font-weight: 800;
+}
+
+.h1 {
+    font-size: 30px;
+    font-weight:600;
+}
+
+.h2 {
     font-size: 20px;
     font-weight: 800;
 }
-.h1{
-    font-size: 30px;
+
+.h3 {
+    font-size: 17px;
+    font-weight: 300;
 }
 
-ul{
+ul {
     list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+li {
+    line-height: 1.5em;
 }
 
 .table-container-div    {
+    display: flex;
     border: black;
     border-style: solid;
-    margin-bottom: 15px;
+    border-width: thin;
+    margin-bottom: 30px;
     overflow:auto;
     width: 100%;
+    height: auto;
+}
+
+.div-table-header-class {
+    width: 40%;
+    font-family: Times New Roman, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 800;
 }
 
 
@@ -61,9 +91,10 @@ ul{
 
 .table-row {
     display: flex;  
-    height: 30px;
+    height: 100%;
     width: 100%;
     overflow:auto;
+
 }
 
 .table-cell {
@@ -72,11 +103,20 @@ ul{
     border: black;
     border-width: thin;
     border-style: solid;
-    width: 100%;
-    overflow:auto;
+    width: 98%;
+    height: 30px;
+    /*overflow:auto;*/
 }
 
 .hidden-Cell {
     visibility: hidden;
     width: 300px;
+}
+
+input, label {
+    display:block;
+}
+
+.cell-element-div {
+    width: 100%;
 }

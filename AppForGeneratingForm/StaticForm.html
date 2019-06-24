@@ -1,0 +1,292 @@
+﻿<html class="gr__localhost">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <link href="Content/Site.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+                /*
+         * contextMenu.js v 1.4.0
+         * Author: Sudhanshu Yadav
+         * s-yadav.github.com
+         * Copyright (c) 2013 Sudhanshu Yadav.
+         * Dual licensed under the MIT and GPL licenses
+        **/
+
+                .iw-contextMenu {
+                    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.10) !important;
+                    border: 1px solid #c8c7cc !important;
+                    border-radius: 11px !important;
+                    display: none;
+                    z-index: 1000000132;
+                    max-width: 300px !important;
+                    width: auto !important;
+                }
+
+                .dark-mode .iw-contextMenu,
+                .TnITTtw-dark-mode.iw-contextMenu,
+                .TnITTtw-dark-mode .iw-contextMenu {
+                    border-color: #747473 !important;
+                }
+
+                .iw-cm-menu {
+                    background: #fff !important;
+                    color: #000 !important;
+                    margin: 0px !important;
+                    padding: 0px !important;
+                    overflow: visible !important;
+                }
+
+                .dark-mode .iw-cm-menu,
+                .TnITTtw-dark-mode.iw-cm-menu,
+                .TnITTtw-dark-mode .iw-cm-menu {
+                    background: #525251 !important;
+                    color: #FFF !important;
+                }
+
+                .iw-curMenu {
+                }
+
+                .iw-cm-menu li {
+                    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, Ubuntu, sans-serif !important;
+                    list-style: none !important;
+                    padding: 10px !important;
+                    padding-right: 20px !important;
+                    border-bottom: 1px solid #c8c7cc !important;
+                    font-weight: 400 !important;
+                    cursor: pointer !important;
+                    position: relative !important;
+                    font-size: 14px !important;
+                    margin: 0 !important;
+                    line-height: inherit !important;
+                    border-radius: 0 !important;
+                    display: block !important;
+                }
+
+                .dark-mode .iw-cm-menu li, .TnITTtw-dark-mode .iw-cm-menu li {
+                    border-bottom-color: #747473 !important;
+                }
+
+                .iw-cm-menu li:first-child {
+                    border-top-left-radius: 11px !important;
+                    border-top-right-radius: 11px !important;
+                }
+
+                .iw-cm-menu li:last-child {
+                    border-bottom-left-radius: 11px !important;
+                    border-bottom-right-radius: 11px !important;
+                    border-bottom: none !important;
+                }
+
+                .iw-mOverlay {
+                    position: absolute !important;
+                    width: 100% !important;
+                    height: 100% !important;
+                    top: 0px !important;
+                    left: 0px !important;
+                    background: #FFF !important;
+                    opacity: .5 !important;
+                }
+
+                .iw-contextMenu li.iw-mDisable {
+                    opacity: 0.3 !important;
+                    cursor: default !important;
+                }
+
+                .iw-mSelected {
+                    background-color: #F6F6F6 !important;
+                }
+
+                .dark-mode .iw-mSelected, .TnITTtw-dark-mode .iw-mSelected {
+                    background-color: #676766 !important;
+                }
+
+                .iw-cm-arrow-right {
+                    width: 0 !important;
+                    height: 0 !important;
+                    border-top: 5px solid transparent !important;
+                    border-bottom: 5px solid transparent !important;
+                    border-left: 5px solid #000 !important;
+                    position: absolute !important;
+                    right: 5px !important;
+                    top: 50% !important;
+                    margin-top: -5px !important;
+                }
+
+                .dark-mode .iw-cm-arrow-right, .TnITTtw-dark-mode .iw-cm-arrow-right {
+                    border-left-color: #FFF !important;
+                }
+
+                .iw-mSelected > .iw-cm-arrow-right {
+                }
+
+                /*context menu css end */
+    </style>
+    <style type="text/css">
+        @-webkit-keyframes load4 {
+            0%, 100% {
+                box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+            }
+
+            12.5% {
+                box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+            }
+
+            25% {
+                box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+            }
+
+            37.5% {
+                box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+            }
+
+            50% {
+                box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+            }
+
+            62.5% {
+                box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+            }
+
+            75% {
+                box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+            }
+
+            87.5% {
+                box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+            }
+        }
+
+        @keyframes load4 {
+            0%, 100% {
+                box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+            }
+
+            12.5% {
+                box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+            }
+
+            25% {
+                box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+            }
+
+            37.5% {
+                box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+            }
+
+            50% {
+                box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+            }
+
+            62.5% {
+                box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+            }
+
+            75% {
+                box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+            }
+
+            87.5% {
+                box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+            }
+        }
+    </style>
+    <style type="text/css">
+        /* This is not a zero-length file! */
+    </style>
+</head>
+<body data-gr-c-s-loaded="true" cz-shortcut-listen="true">
+    <script>
+        (function () {
+
+            var formJsonObj;
+
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                type: "GET",
+                url: "/api/values",
+                dataType: 'json',
+
+                success: function (data, textStatus, jqXHR) {
+
+                    console.log("Success Getting Data");
+
+                    CreateHeader(data.Form.Header);
+                    CreateBody(data.Form.Sections[0]);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+
+            function CreateHeader(header) {
+
+               var headerDiv = $('<div>').attr({id: "header-div", class: "header-title-Banner"})
+                $('<p>').attr({class: "header-title"}).text(header.Title).appendTo(headerDiv);
+                $('<img />')
+                        .attr('src', "Content/Images/logo.png")
+                        .attr('title', "Banner")
+                        .attr('alt', "eSignature image")
+                        .attr('class', "img-Banner")
+                        //.width('113px').height('80px')
+                        .appendTo(headerDiv);
+                headerDiv.appendTo($('body'));
+
+
+                if (header.Description !== null && header.Description.length > 0)
+                {
+                   var description = $('<ul>').appendTo($('body'));
+                    $.each(header.Description, function (index, value) {
+                        $('<li>').attr({class : "h"+ (index+1)}).text(value.Line).appendTo(description);
+                    });
+                }
+            }
+
+            function CreateBody(body) {
+                var tables = body.Tables;
+                if (tables !== null && tables.length > 0)
+                {
+                    $.each(tables, function (index, table) {
+
+                        var tableContainerDiv = $('<div>').attr({ id: "table-container-div-" + index, class: "table-container-div" }).appendTo($('body'));
+
+                        var headerDiv = $('<div>').attr({ id: "div-table-header", class: "div-table-header-class" }).text(table.Title).appendTo(tableContainerDiv);
+
+                        var tableContent = $('<table>').attr({ class: "table-content" }).appendTo(tableContainerDiv);
+
+
+                        $.each(table.Rows, function (index, row) {
+
+                            var tableRow = $('<tr>').attr({ class: "table-row" }).appendTo($('body'));
+                            tableRow.appendTo(tableContent);
+
+
+                            if (row !== null && row.length >= 1) {
+
+                                $.each(row, function (i, cell) {
+
+                                    var cellParentDiv = $('<div>').attr({ id: "cell-parent-div", class: "cell-element-div" }).appendTo(tableRow);
+                                     var label =   $('<label>').attr({ for: 'TextBox_' + (row[i].Id) }).text(row[i].Name).appendTo(cellParentDiv);
+
+                                    var input =  $('<input>').attr({ type: 'text', id: row[i].Id, class: "table-cell" }).appendTo(cellParentDiv);
+
+
+                                    if (cell !== null && cell !== undefined && cell.length > 0) {
+                                        $('<input>').attr({ type: 'text', id: cell.Id }).text(cell[i].Name).appendTo(cellParentDiv);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                }
+            }
+
+
+        })();
+    </script>
+
+
+    <div id="header-div" class="header-title-Banner"><p class="header-title">Standart Blanket </p><img src="Content/Images/logo.png" title="Banner" alt="eSignature image" class="img-Banner"></div><ul><li class="h1">Standard blanket over esignaturs felter</li><li class="h2">Flette felter og ikke flette felter </li><li class="h3">Disse er de felter der kan flettes ind fra på pdf’en og felter der ikke kan flettes ind.</li></ul><div id="table-container-div-0" class="table-container-div"><div id="div-table-header" class="div-table-header-class">Eksempel på personoplysninger:</div><table class="table-content"><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_1">Navn</label><input type="text" id="1" class="table-cell"></div></tr><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_2">E-mail</label><input type="text" id="2" class="table-cell"></div><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_3">CPR nr</label><input type="text" id="3" class="table-cell"></div></tr></table></div><div id="table-container-div-1" class="table-container-div"><div id="div-table-header" class="div-table-header-class">Eksempel på forskellige formfelter:</div><table class="table-content"><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_4">BankAccount:</label><input type="text" id="4" class="table-cell"></div></tr><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_5">BankAccountRegistrationNumber:</label><input type="text" id="5" class="table-cell"></div></tr><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_6">CPR</label><input type="text" id="6" class="table-cell"></div><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_7">CVR</label><input type="text" id="7" class="table-cell"></div></tr><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_8">Checkbox:</label><input type="text" id="8" class="table-cell"></div></tr><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_9">CustomRegularExpression (ord mellemrum ord):</label><input type="text" id="9" class="table-cell"></div></tr><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_10">DateField:</label><input type="text" id="10" class="table-cell"></div></tr><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_11">DropdownList:</label><input type="text" id="11" class="table-cell"></div></tr><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_12">EmailAddress:</label><input type="text" id="12" class="table-cell"></div></tr><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_13">NumericField:</label><input type="text" id="13" class="table-cell"></div></tr><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_14">PhoneNumber:</label><input type="text" id="14" class="table-cell"></div></tr><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_15">RadioButtonGroup:</label><input type="text" id="15" class="table-cell"></div></tr><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_16">RadioButtonGroupMulti:</label><input type="text" id="16" class="table-cell"></div></tr><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_17">TextField:</label><input type="text" id="17" class="table-cell"></div></tr><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_18">TextFieldArea:</label><input type="text" id="18" class="table-cell"></div></tr><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_19">ZipCode:</label><input type="text" id="19" class="table-cell"></div><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_20">NumericRange</label><input type="text" id="20" class="table-cell"></div></tr></table></div><div id="table-container-div-2" class="table-container-div"><div id="div-table-header" class="div-table-header-class">Ikke fletbare felter:</div><table class="table-content"><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_21">DriversLicence (ikke fletbart):</label><input type="text" id="21" class="table-cell"></div><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_22">FileUpload (ikke fletbart):</label><input type="text" id="22" class="table-cell"></div></tr><tr class="table-row"><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_23">Label (ikke fletbart):</label><input type="text" id="23" class="table-cell"></div><div id="cell-parent-div" class="cell-element-div"><label for="TextBox_24">FileUpload (ikke fletbart):</label><input type="text" id="24" class="table-cell"></div></tr></table></div><iframe src="https://www.ciuvo.com/ciuvo/globalstorage?version=2.1.3" style="position: absolute; width: 1px; height: 1px; left: -9999px;"></iframe>
+</body>
+</html>
