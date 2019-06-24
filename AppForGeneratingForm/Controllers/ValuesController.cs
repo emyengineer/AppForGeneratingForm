@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace WebApplication1.Controllers
@@ -17,6 +18,9 @@ namespace WebApplication1.Controllers
         {
             string FormJSONDummyData = string.Empty;
             FormJSONDummyData = File.ReadAllText(@"D:/LuftBorn/Current Work/01_Angular_Forms_Drag_Drop/GenerateForm/Data/Data.json");
+            //FormJSONDummyData = File.ReadAllText("Data/Data.json");
+            //Server.MapPath("~/App_Data/yourxmlfile.xml");
+            //FormJSONDummyData = Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, @"App_Data\Data.json");
             JObject json = JObject.Parse(FormJSONDummyData);
             return json;
 

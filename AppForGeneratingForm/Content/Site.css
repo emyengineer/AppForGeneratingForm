@@ -15,3 +15,43 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.header-title-Banner {
+    display: flex;
+    background-color: #315D78;
+}
+
+.img-Banner {
+    background-color: white;
+}
+
+.header-title {
+    width: 200px;
+    color: white;
+    height: 10px;
+    font-size: 20px;
+    font-weight: 800;
+}
+.h1{
+    font-size: 30px;
+}
+
+ul{
+    list-style: none;
+}
+
+.table-content {
+
+}
+
+.table-head {
+
+}
+
+.table-row {
+
+}
+
+.table-cell {
+
+}

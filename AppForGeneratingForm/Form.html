@@ -4,6 +4,7 @@
     <title></title>
 	<meta charset="utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <link href="Content/Site.css" rel="stylesheet" />
 </head>
 <body>
     <script>
@@ -31,14 +32,23 @@
 
             function CreateHeader(header) {
 
-                $('<p>').text(header.Title).appendTo($('body'));
-                $('<p>').text(header.Logo).appendTo($('body'));
+               var headerDiv = $('<div>').attr({id: "header-div", class: "header-title-Banner"})
+                $('<p>').attr({class: "header-title"}).text(header.Title).appendTo(headerDiv);
+                $('<img />')
+                        .attr('src', "Content/Images/logo.png")         
+                        .attr('title', "Banner")
+                        .attr('alt', "eSignature image")
+                        .attr('class', "img-Banner")
+                        .width('113px').height('80px')
+                        .appendTo(headerDiv);
+                headerDiv.appendTo($('body'));
+
 
                 if (header.Description !== null && header.Description.length > 0)
                 {
                    var description = $('<ul>').appendTo($('body'));
                     $.each(header.Description, function (index, value) {
-                        $('<li>').text(value.Line).appendTo(description);
+                        $('<li>').attr({class : "h1"}).text(value.Line).appendTo(description);
                     });               
                 }
                 $('<label>').attr({ for: 'TextBox_id' }).text("Labelss").appendTo($('body'));
@@ -49,9 +59,31 @@
                 if (tables !== null && tables.length > 0) 
                 {
                     $.each(tables, function (index, table) {
-                        $('<p>').text(table.Title).appendTo('body');
+                        // console.log(table);
+                        var tableContent = $('<table>').attr({ class: "table-content" }).appendTo($('body'));
+
+                        var tableHead = $('<tr>').attr({ class: "table-head" }).appendTo(tableContent);
+                        $('<th>').attr({ class: "table-head" }).text('Table Header').appendTo(tableHead);
+                        $('<th>').attr({ class: "table-head" }).text('Table Header').appendTo(tableHead);
+                        $('<th>').attr({ class: "table-head" }).text('Table Header').appendTo(tableHead);
+
+                        $('<p>').text(table.Title).appendTo(tableContent);
+
                         $.each(table.Rows, function (index, row) {
-                            $('<input>').attr({ type: 'text', id: row.Id }).text(row.Name).appendTo($('body'));;
+                            var tableRow = $('<tr>').attr({ class: "table-row" }).appendTo($('body'));
+                            tableRow.appendTo(tableContent);
+                            console.log(row);
+                            
+
+                            if (row !== null && row.length >= 1) {
+
+                            $.each(row, function (i, cell) {
+                                var parentCell = $('<input>').attr({ type: 'text', id: row.Id, value: row[i].Name }).text(row[i].Name).appendTo(tableRow);
+                                    if (cell !== null && cell !== undefined && cell.length > 0) {
+                                        $('<input>').attr({ type: 'text', id: cell.Id, value: cell[i].Name }).text(cell[i].Name).appendTo(parentCell);
+                                    }
+                                });
+                            }
                         });
                     });
                 }
