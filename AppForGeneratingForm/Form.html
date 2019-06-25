@@ -35,6 +35,7 @@
 
             function CreateHeader(header) {
 
+               var form = $('<form>').attr({ id: "FormBuilder", name: "GeneratedForm", action: ' ' }).appendTo($('body'));
                var headerDiv = $('<div>').attr({id: "header-div", class: "header-title-Banner"})
                 $('<p>').attr({class: "header-title"}).text(header.Title).appendTo(headerDiv);
                 $('<img />')
@@ -44,14 +45,17 @@
                         .attr('class', "img-Banner")
                         //.width('113px').height('80px')
                         .appendTo(headerDiv);
-                headerDiv.appendTo($('body'));
+                headerDiv.appendTo(form);
 
 
                 if (header.Description !== null && header.Description.length > 0)
                 {
-                   var description = $('<ul>').appendTo($('body'));
+                   var description = $('<ul>').appendTo(form);
                     $.each(header.Description, function (index, value) {
-                        $('<li>').attr({class : "h"+ (index+1)}).text(value.Line).appendTo(description);
+                        $('<li>')
+                            .attr({ class: "h" + (index + 1) })
+                            .text(value.Line)
+                            .appendTo(description);
                     });               
                 }
             }
@@ -62,61 +66,181 @@
                 {
                     $.each(tables, function (index, table) {
                        
-                        var tableContainerDiv = $('<div>').attr({ id: "table-container-div-" + index, class: "table-container-div" }).appendTo($('body'));
+                        var tableContainerDiv = $('<div>')
+                            .attr({ id: "table-container-div-" + index, class: "table-container-div" })
+                            .appendTo($('#FormBuilder'));
 
-                        var headerDiv = $('<div>').attr({ id: "div-table-header", class: "div-table-header-class" }).text(table.Title).appendTo(tableContainerDiv);
+                        var headerDiv = $('<div>')
+                            .attr({ id: "div-table-header", class: "div-table-header-class" })
+                            .text(table.Title)
+                            .appendTo(tableContainerDiv);
 
-                        var tableContent = $('<table>').attr({ class: "table-content" }).appendTo(tableContainerDiv);
+                        var tableContent = $('<table>')
+                            .attr({ class: "table-content" })
+                            .appendTo(tableContainerDiv);
                     
 
                         $.each(table.Rows, function (index, row) {
 
-                            var tableRow = $('<tr>').attr({ class: "table-row" }).appendTo($('body'));
+                            var tableRow = $('<tr>')
+                                .attr({ class: "table-row" })
+                                .appendTo($('#FormBuilder'));
+
                             tableRow.appendTo(tableContent);                        
 
                             if (row !== null && row.length >= 1) {
 
                                 $.each(row, function (i, cell) {
                                     
-                                    var cellParentDiv = $('<div>').attr({ id: "cell-parent-div", class: "cell-element-div" }).appendTo(tableRow);
+                                    var cellParentDiv = $('<div>')
+                                        .attr({ id: "cell-parent-div", class: "cell-element-div" })
+                                        .appendTo(tableRow);
                                     
                                     if (row[i].Type === "Text") {
 
-                                        var label = $('<label>').attr({ for: 'Text_' + (row[i].Id) }).text(row[i].Name).appendTo(cellParentDiv);
-                                        $('<input>').attr({ type: row[i].Type, id: 'Text_' + (row[i].Id), class: "table-cell" }).appendTo(cellParentDiv);
+                                        var label = $('<label>')
+                                            .attr({ for: 'Text_' + (row[i].Id) })
+                                            .text(row[i].Name)
+                                            .appendTo(cellParentDiv);
+
+                                        $('<input>')
+                                            .attr({ type: row[i].Type, id: 'Text_' + (row[i].Id), class: "table-cell" })
+                                            .appendTo(cellParentDiv);
 
                                     } else if (row[i].Type === "Checkbox") {
-                                        var label = $('<label>').attr({ for: 'checkBox_' + (row[i].Id) }).text(row[i].Name).appendTo(cellParentDiv);
-                                        // $('<input>').attr({ type: 'checkbox', id: row[i].Id, class: "table-cell" }).appendTo(cellParentDiv);
+
+                                        var label = $('<label>')
+                                            .attr({ for: 'checkBox_' + (row[i].Id) })
+                                            .text(row[i].Name)
+                                            .appendTo(cellParentDiv);
+
                                     } else if (row[i].Type === "Select") {
 
-                                       var label = $('<label>').attr({ for: 'Select_' + (row[i].Id) }).text(row[i].Name).appendTo(cellParentDiv);
-                                       var combo = $('<select>').attr({ type: row[i].Type, class: "table-cell" }).appendTo(cellParentDiv);
-                                        $.each(row[i].Options, function (j, selectOption) {
-                                            combo.append("<option>" + selectOption + "</option>");
-                                        })
-                                    } else {
+                                        var label = $('<label>')
+                                            .attr({ for: 'Select_' + (row[i].Id) })
+                                            .text(row[i].Name)
+                                            .appendTo(cellParentDiv);
 
-                                        var label = $('<label>').attr({ for: 'Text_' + (row[i].Id) }).text(row[i].Name).appendTo(cellParentDiv);
-                                        $('<input>').attr({ type: row[i].Type, id: 'Text_' + (row[i].Id), class: "table-cell" }).appendTo(cellParentDiv);
+                                        var combo = $('<select>')
+                                            .attr({ type: row[i].Type, class: "table-cell" })
+                                            .appendTo(cellParentDiv);
+
+                                       $.each(row[i].Options, function (j, selectOption) {
+                                           combo
+                                               .append("<option>" + selectOption + "</option>");
+                                       });
+
+                                    } else if (row[i].Type === "Radio") {
+
+                                        var label = $('<label>')
+                                            .attr({ for: 'Radio_' + (row[i].Id) })
+                                            .text(row[i].Name)
+                                            .appendTo(cellParentDiv);
+
+                                        var radioDiv = $('<div>')
+                                            .attr({ id: "radio-div", class: "radio-container-div" })
+                                            .appendTo(cellParentDiv);
+
+                                        $.each(cell.Options, function (radioIndex, radioOption) {
+
+                                            $('<label>')
+                                                .attr({ for: 'Radio_' + (cell.Id) + "_" + radioIndex, class: "Radio-cell" })
+                                                .text(radioOption)
+                                                .appendTo(radioDiv);
+
+                                            $('<input>')
+                                                .attr({ type: row[i].Type, id: cell.Id, name: radioOption, class: "Radio-cell" })
+                                                .appendTo(radioDiv);
+
+                                        });
+
+
+                                    } else if (row[i].Type === "RadioMulti") {
+
+                                        $('<label>')
+                                            .attr({ for: 'RadioMulti_' + (row[i].Id), class: "radio-multi-Label" })
+                                            .text(row[i].Name)
+                                            .appendTo(cellParentDiv);
+
+                                        var radioMultiDiv = $('<div>')
+                                            .attr({ id: "radio-multi-div", class: "radio-multi-container-div" })
+                                            .appendTo(cellParentDiv);
+
+                                        $.each(cell.Options, function (k, group) {
+
+                                            var fieldSetGroup = $('<fieldset>')
+                                                .attr({ id: "fieldset" + group[k].Group, class: "fieldset-group" })
+                                                .appendTo(radioMultiDiv);
+
+                                            //console.log(group)
+                                            $.each(group, function (m, fieldSetButton) {
+                                                var optionDiv = $('<div>')
+                                                    .attr({ class: "Radio-Multi-Option-Div" })
+                                                    .appendTo(fieldSetGroup);
+
+                                                $('<label>').attr({ for: 'RB-' + m })
+                                                    .text(fieldSetButton.Label)
+                                                    .appendTo(optionDiv);
+
+                                                $('<input>')
+                                                    .attr({ type: fieldSetButton.Type, id: "RB-" + m, name: fieldSetButton.Label, class: "Radio-cell" })
+                                                    .appendTo(optionDiv);
+
+                                            });
+                                            
+                                        });
+
+
+                                    } else if (row[i].Type === "textarea") {
+
+                                        var label = $('<label>')
+                                            .attr({ for: 'Text_' + (row[i].Id) }).text(row[i].Name)
+                                            .appendTo(cellParentDiv);
+
+                                        $('<input>')
+                                            .attr({ type: row[i].Type, id: 'Text_' + (row[i].Id), class: "table-cell text-area" })
+                                            .appendTo(cellParentDiv);
+                                    }                  
+                                    else {
+
+                                        var label = $('<label>')
+                                            .attr({ for: 'Text_' + (row[i].Id) })
+                                            .text(row[i].Name)
+                                            .appendTo(cellParentDiv);
+
+                                        $('<input>')
+                                            .attr({ type: row[i].Type, id: 'Text_' + (row[i].Id), class: "table-cell" })
+                                            .appendTo(cellParentDiv);
                                     }
 
                                     if (row[i].Type === "Checkbox") {
-                                        var checkBoxesDiv = $('<div>').attr({ id: "checkboxes-div", class: "checkboxes-container-div" }).appendTo(cellParentDiv);
 
-                                         $.each(cell.Options, function (optIndex, option) {
-                                            
-                                             var optionLabel = $('<label>').attr({ for: 'checkbox_' + (row[i].Id) + "_" + optIndex, class: "checkBox-cell" }).text(option).appendTo(checkBoxesDiv);
-                                             var optionElement = $('<input>').attr({ type: 'checkbox', id: cell.Id, name: option, class: "checkBox-cell" }).appendTo(checkBoxesDiv);
-                                             
-                                         })
+                                        var checkBoxesDiv = $('<div>')
+                                            .attr({ id: "checkboxes-div", class: "checkboxes-container-div" })
+                                            .appendTo(cellParentDiv);
+
+                                        $.each(cell.Options, function (optIndex, option) {
+
+                                            var optionLabel = $('<label>')
+                                                .attr({ for: 'checkbox_' + (cell.Id) + "_" + optIndex, class: "checkBox-cell" })
+                                                .text(option).appendTo(checkBoxesDiv);
+
+                                            var optionElement = $('<input>')
+                                                .attr({ type: 'checkbox', id: cell.Id, name: option, class: "checkBox-cell" }).appendTo(checkBoxesDiv);
+
+                                        });
                                         
                                      } else {
 
                                          if (cell !== null && cell !== undefined && cell.length > 0) {
-                                             $('<input>').attr({ type: 'text', id: cell.Id }).text(cell[i].Name).appendTo(cellParentDiv);
+                                             $('<input>')
+                                                 .attr({ type: 'text', id: cell.Id })
+                                                 .text(cell[i].Name)
+                                                 .appendTo(cellParentDiv);
+                                             console.log("Exceptional PAth");
                                          }
-                                     }
+                                    }
+                                    
                                 });
                             }
                         });

@@ -119,6 +119,35 @@ input, label {
 
 .cell-element-div {
     width: 100%;
+   
+}
+
+.display-flex {
+     display:flex;/*added*/
+}
+
+.radio-multi-Label {
+    width:50%;
+}
+
+.radio-multi-container-div {
+    display:flex;
+    width: 50%;
+    margin-left: 20%;
+    background-color: aliceblue;
+}
+
+fieldset {
+        width: 50%;
+}
+
+.text-area {
+    height: 100px;
+}
+
+.Radio-Multi-Option-Div {
+    display: flex;
+    width: 100%;
 }
 
 .checkboxes-container-div {
@@ -129,4 +158,14 @@ input, label {
 
 .checkBox-cell {
     width: 10%;
+}
+
+.radio-container-div {
+    display: flex;
+    width: 50%;
+    float: right;
+}
+
+.Radio-cell {
+    width: 25%;
 }
