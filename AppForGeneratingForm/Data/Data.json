@@ -183,7 +183,13 @@
 										"Id": "16",
 										"Name": "RadioButtonGroupMulti:",
 										"Type": "RadioMulti",
-										"Options": [{"Type": "Text", "Label": "valg nummer 1:"}, {"Type": "Text", "Label": "valg nummer 2:"}],
+										"Options": [[{"Group":"1", "Type": "Radio", "Label": "valg nummer 1:"},
+													{"Group":"1", "Type": "Radio", "Label": "valg nummer 2:"},],
+										
+													[{"Group":"2", "Type": "Radio", "Label": "valg nummer A:"},
+													{"Group":"2", "Type": "Radio", "Label": "valg nummer B:"},
+													{"Group":"2", "Type": "Radio", "Label": "valg nummer C:"}]
+												],
 										"Value": "",
 										"DependentId": ""
 								}
@@ -202,7 +208,7 @@
 								{
 										"Id": "18",
 										"Name": "TextFieldArea:",
-										"Type": "",
+										"Type": "textarea",
 										"Options": [],
 										"Value": "",
 										"DependentId": ""
